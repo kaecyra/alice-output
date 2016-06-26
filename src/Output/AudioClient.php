@@ -25,13 +25,6 @@ class AudioClient extends SocketClient {
     const FORMAT = 'wav';
     const EXTENSION = 'wav';
 
-    const ALERT_INFO = 'alert_info';
-    const ALERT_NOTIFY = 'alert_notify';
-    const ALERT_TONE = 'alert_tone';
-
-    const ALERT_START_LISTEN = 'alert_start_listen';
-    const ALERT_STOP_LISTEN = 'alert_stop_listen';
-
     /**
      * Sound asset path
      * @var string
@@ -87,17 +80,19 @@ class AudioClient extends SocketClient {
     public function message_alert(SocketMessage $message) {
         $alert = $message->getData();
         $alertType = val('type', $alert);
-        $this->log("received alert: {$alertType}");
+        $this->rec("received alert: {$alertType}");
 
         $alertFile = "alert_{$alertType}.".self::EXTENSION;
         $audioPath = paths($this->assetPath, 'sounds', $alertFile);
 
         if (!file_exists($audioPath)) {
-            $this->log(" unknown alert type");
+            $this->rec(" unknown alert type");
             return;
         }
 
-        exec("pacmd play-file \"{$audioPath}\"", null, $return);
+        $out = [];
+        //exec("pacmd play-file \"{$audioPath}\"", $out, $return);
+        exec("afplay -q 1 \"{$audioPath}\"", $out, $return);
     }
 
     /**
