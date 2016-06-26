@@ -100,7 +100,7 @@ class Output implements App {
 
         // Run the server application
         $this->client = new AudioClient();
-        $ran = $this->client->run($connectionRetry);
+        $ran = $this->client->run(self::$loop, $connectionRetry);
 
         rec(' client closed');
         rec($ran);

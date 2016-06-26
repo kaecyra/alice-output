@@ -7,6 +7,8 @@
 
 namespace Alice\Output;
 
+use Alice\Output;
+
 use Alice\Socket\SocketClient;
 use Alice\Socket\SocketMessage;
 
