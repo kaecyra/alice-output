@@ -12,8 +12,6 @@ use Alice\Output;
 use Alice\Socket\SocketClient;
 use Alice\Socket\SocketMessage;
 
-use PhpGpio\Gpio;
-
 /**
  * ALICE Output Client
  *
@@ -37,7 +35,7 @@ class AudioClient extends SocketClient {
      */
     public function __construct() {
         parent::__construct();
-        $this->settings = Output::go()->config()->get('sensor');
+        $this->settings = Output::go()->config()->get('output');
         $this->server = Output::go()->config()->get('server');
         $this->assetPath = paths(\Alice\Daemon\Daemon::option('appDir'), 'assets');
     }

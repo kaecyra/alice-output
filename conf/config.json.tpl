@@ -14,7 +14,12 @@
         "id": "lr-audio-output01",
         "name": "Livingroom Audio Output",
         "settings": {
-            
+            "extensions": [
+                {
+                    "type": "audio"
+                }
+            ],
+            "apikey": ""
         }
     }
 }
